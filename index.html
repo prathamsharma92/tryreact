@@ -156,10 +156,62 @@
         }
       }
 
-      ReactDOM.render(
-        <Clock />,
-        document.getElementById('root')
-      );
+      //ReactDOM.render(
+      //  <Clock />,
+      //  document.getElementById('root')
+      //);
+
+      ////////////////////////////////////////////////////
+
+      class ActionLink extends React.Component {
+
+        //function handleClick(e) {
+        //  e.preventDefault();
+        //  console.log('THe link was clicked.');
+        //}
+
+        handleClick() {
+          console.log("thissss is:", this);
+        }
+
+        render (){
+          return(
+            <a href="#" onClick={(e) => this.handleClick(e)}>Click here</a>
+          );
+        }
+      }
+
+      //ReactDOM.render(<ActionLink />, document.getElementById('root'));
+
+      /////////////////////////////////////////////////////
+
+      function UserGreeting(props) {
+        return (<h1><Clock />Welcome back!</h1>);
+      }
+
+      function GuestGreeting(props) {
+
+        function handleClick(e) {
+          e.preventDefault();
+          console.log("clicked here!!");
+        }
+
+        return (<h1><Clock />Please sign up, click <a href="#" onClick={handleClick}>Here</a></h1>);
+      }
+
+      function Greeting(props) {
+        const isLoggedIn = props.isLoggedIn;
+
+        if (isLoggedIn){
+          return <UserGreeting />;
+        }else{
+          return <GuestGreeting />;
+        }
+      }
+
+      ReactDOM.render(<Greeting isLoggedIn={false} />, document.getElementById('root'));
+
+
     </script>
     <!--
       Note: this page is a great way to try React but it's not suitable for production.
